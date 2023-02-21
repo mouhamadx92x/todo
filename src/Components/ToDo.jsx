@@ -1,6 +1,7 @@
 import React from "react";
 import { v4 as uuidv4 } from "uuid";
 import { useState } from "react";
+import "../Style/ToDo.css"
 
 const Todo = () => {
   const [todos, setTodos] = useState([]);
@@ -12,24 +13,26 @@ const Todo = () => {
 
   const delethandler = (id) => {
     const newTodo = todos.filter((element) => {
-      return element.id != id;
+      return element.id !== id;
     });
     
     setTodos([...newTodo]);
   };
 
   return (
-    <div>
+    <div className="mainContainer">
+      <div className="inputContainer">
       <input
         type="text"
         onChange={(e) => {
           setValue(e.target.value);
-        }}
+          }}
       />
       <button onClick={addHandler}>Add</button>
-
+      </div>
       {todos.map((todo) => (
-        <div key={todo.id}>
+        <div className="taksContainer"
+        key={todo.id}>
           <p>{todo.name}</p>
           <button onClick={()=>delethandler(todo.id)}>x</button>
         </div>
