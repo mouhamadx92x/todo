@@ -1,13 +1,12 @@
 import Header from "./Header";
 import Form from "./Form";
 import TodosList from "./TodosList";
-import { useState } from "react";
-import "../Style/App.css"
-function App() {
-  const [input, setInput] = useState("");
-  const [todos, setTodos] = useState([]);
-  
+import { useContext } from "react";
+import { todoContext } from "../Context/context.js";
+import "../Style/App.css";
 
+function App() {
+  const { input, setInput, todos, setTodos } = useContext(todoContext);
   return (
     <div className="container">
       <div className="app-wrapper">
@@ -20,11 +19,10 @@ function App() {
             setInput={setInput}
             todos={todos}
             setTodos={setTodos}
-            
           />
         </div>
         <div>
-        <TodosList todos={todos} setTodos={setTodos} />
+          <TodosList todos={todos} setTodos={setTodos} />
         </div>
       </div>
     </div>
