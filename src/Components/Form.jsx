@@ -5,7 +5,7 @@ import { v4 as uuidv4 } from "uuid";
 
 const Form = () => {
 
-  const { input, setInput, todos, setTodos } = useContext(todoContext);
+  const { input, setInput, todos, setTodos,setTaskNumber,taskNumber } = useContext(todoContext);
 
   const inputChangeHandler = (event) => {
     setInput(event.target.value);
@@ -15,6 +15,7 @@ const Form = () => {
     event.preventDefault();
     setTodos([...todos, { name: input, id: uuidv4(), isDone: false }]);
     setInput("");
+    setTaskNumber(taskNumber+1)
   };
 
   return (

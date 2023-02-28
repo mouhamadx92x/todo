@@ -4,6 +4,7 @@ import TodosList from "./TodosList";
 import { useContext } from "react";
 import { todoContext } from "../Context/context.js";
 import "../Style/App.css";
+import TaskCounter from "./TaskCounter";
 
 function App() {
   const { input, setInput, todos, setTodos } = useContext(todoContext);
@@ -12,6 +13,9 @@ function App() {
       <div className="app-wrapper">
         <div>
           <Header />
+        </div>
+        <div>
+          <TaskCounter />
         </div>
         <div>
           <Form

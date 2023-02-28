@@ -5,11 +5,22 @@ import { AiFillCheckSquare } from "react-icons/ai";
 import { AiFillDelete } from "react-icons/ai";
 
 const TodosList = () => {
-  const { todos, setTodos } = useContext(todoContext);
+  const {
+    todos,
+    setTodos,
+    taskNumber,
+    setTaskNumber,
+    isComplete,
+    setIsComplete,
+  } = useContext(todoContext);
 
-  const deletHandler = ({ id }) => {
-    const filterdTodos = todos.filter((todo) => todo.id !== id);
+  const deletHandler = (task) => {
+    const filterdTodos = todos.filter((todo) => todo.id !== task.id);
+    if (task.isDone === true) {
+      setIsComplete(isComplete - 1);
+    }
     setTodos(filterdTodos);
+    setTaskNumber(taskNumber - 1);
   };
 
   const completeHandler = (task) => {
@@ -18,18 +29,58 @@ const TodosList = () => {
       if (task.id === todo.id) {
         return { ...task, isDone: !task.isDone };
       }
+
       return todo;
     });
+    if (task.isDone) {
+      setIsComplete(isComplete - 1);
+    } else {
+      setIsComplete(isComplete + 1);
+    }
 
     setTodos(compltedTodo);
   };
+
+  //   const completeHandler = (task) => {
+  //     const compltedTodo = todos.map((todo) => {
+  //       if (task.id === todo.id) {
+  //         return { ...task, isDone: !task.isDone };
+  //       }
+
+  //       return todo;
+  //     });
+  //     setTodos(compltedTodo);
+  //   };
+
+  //   const completeConter = () => {
+  // todos.map((todo)=>{
+  //   if (todo.isDone) {
+  //     setIsComplete(isComplete - 1);
+  //   } else {
+  //     setIsComplete(isComplete + 1);
+  //   }
+  // })
+
+  //   };
+
+  // const completeConter = () => {
+  //   todos.map((todo) => {
+  //     setIsComplete(0);
+
+  //     if (todo.isDone) {
+  //       setIsComplete(isComplete - 1);
+  //     } else {
+  //       setIsComplete(isComplete + 1);
+  //     }
+  //   });
+  // };
 
   return (
     <div>
       {todos.map((todo) => (
         <div className="list-item" key={todo.id}>
-          <div key={todo.id}>
-            <li key={todo.id}>
+          <div>
+            <li>
               <input
                 type="text"
                 value={todo.name}
@@ -41,7 +92,10 @@ const TodosList = () => {
           <div>
             <button
               className="button-complete "
-              onClick={() => completeHandler(todo)}
+              onClick={() => {
+                completeHandler(todo);
+                // completeConter();
+              }}
             >
               <AiFillCheckSquare />
             </button>
