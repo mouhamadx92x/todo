@@ -10,10 +10,11 @@ const TaskCounter = () => {
 
   return (
  <div className='conterWraper'>
-        <p>You have {taskNumber} tasks</p>
-        <p>{isComplete} tasks is completed</p>
+        <p>You have {taskNumber} {taskNumber <= 1 ?"task" :"tasks"}</p>
+        <p>{isComplete} {isComplete <= 1 ?"task is completed " :"tasks are completed"}</p>
         </div>
   )
 }
 
 export default TaskCounter
+

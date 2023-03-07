@@ -9,7 +9,11 @@ import TaskCounter from "./TaskCounter";
 function App() {
   const { input, setInput, todos, setTodos } = useContext(todoContext);
   return (
-    <div className="container">
+    <div>
+<h1></h1>
+{/* -------------------------------------------------------------------------------- */}
+
+<div className="container">
       <div className="app-wrapper">
         <div>
           <Header />
@@ -29,6 +33,13 @@ function App() {
           <TodosList todos={todos} setTodos={setTodos} />
         </div>
       </div>
+    </div>
+
+{/* ------------------------------------------------------------------------------- */}
+<h1></h1>
+
+
+
     </div>
   );
 }

@@ -1,8 +1,8 @@
 import { useContext } from "react";
 import { todoContext } from "../Context/context.js";
 import React from "react";
-import { AiFillCheckSquare } from "react-icons/ai";
 import { AiFillDelete } from "react-icons/ai";
+import Checkbox from "@material-ui/core/Checkbox";
 
 const TodosList = () => {
   const {
@@ -41,43 +41,9 @@ const TodosList = () => {
     setTodos(compltedTodo);
   };
 
-  //   const completeHandler = (task) => {
-  //     const compltedTodo = todos.map((todo) => {
-  //       if (task.id === todo.id) {
-  //         return { ...task, isDone: !task.isDone };
-  //       }
-
-  //       return todo;
-  //     });
-  //     setTodos(compltedTodo);
-  //   };
-
-  //   const completeConter = () => {
-  // todos.map((todo)=>{
-  //   if (todo.isDone) {
-  //     setIsComplete(isComplete - 1);
-  //   } else {
-  //     setIsComplete(isComplete + 1);
-  //   }
-  // })
-
-  //   };
-
-  // const completeConter = () => {
-  //   todos.map((todo) => {
-  //     setIsComplete(0);
-
-  //     if (todo.isDone) {
-  //       setIsComplete(isComplete - 1);
-  //     } else {
-  //       setIsComplete(isComplete + 1);
-  //     }
-  //   });
-  // };
-
   return (
-    <div>
-      {todos.map((todo) => (
+    <div className="todos-wrapper">
+      { todos.length > 0 ?  todos.map((todo) => (
         <div className="list-item" key={todo.id}>
           <div>
             <li>
@@ -89,16 +55,14 @@ const TodosList = () => {
               />
             </li>
           </div>
-          <div>
-            <button
-              className="button-complete "
-              onClick={() => {
-                completeHandler(todo);
-                // completeConter();
-              }}
-            >
-              <AiFillCheckSquare />
-            </button>
+          <div className="button-container">
+            <Checkbox
+              checked={todo.isDone}
+              value={todo.isDone}
+              onChange={() => completeHandler(todo)}
+              inputProps={{ "aria-label": "primary checkbox" }}
+              color="primary"
+            />
 
             <button
               className="button-delete "
@@ -108,7 +72,7 @@ const TodosList = () => {
             </button>
           </div>
         </div>
-      ))}
+      )) :<h1 className="alternative">Add todos</h1>}
     </div>
   );
 };
