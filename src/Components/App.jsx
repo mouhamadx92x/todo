@@ -10,36 +10,27 @@ function App() {
   const { input, setInput, todos, setTodos } = useContext(todoContext);
   return (
     <div>
-<h1></h1>
-{/* -------------------------------------------------------------------------------- */}
-
-<div className="container">
-      <div className="app-wrapper">
-        <div>
-          <Header />
-        </div>
-        <div>
-          <TaskCounter />
-        </div>
-        <div>
-          <Form
-            input={input}
-            setInput={setInput}
-            todos={todos}
-            setTodos={setTodos}
-          />
-        </div>
-        <div>
-          <TodosList todos={todos} setTodos={setTodos} />
+      <div className="container">
+        <div className="app-wrapper">
+          <div>
+            <Header />
+          </div>
+          <div>
+            <TaskCounter />
+          </div>
+          <div>
+            <Form
+              input={input}
+              setInput={setInput}
+              todos={todos}
+              setTodos={setTodos}
+            />
+          </div>
+          <div>
+            <TodosList todos={todos} setTodos={setTodos} />
+          </div>
         </div>
       </div>
-    </div>
-
-{/* ------------------------------------------------------------------------------- */}
-<h1></h1>
-
-
-
     </div>
   );
 }
