@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { todoContext } from "../Context/context.js";
 import React from "react";
 import { AiFillDelete } from "react-icons/ai";
-import Checkbox from "@material-ui/core/Checkbox";
+import { Checkbox } from "@mui/material";
 
 const TodosList = () => {
   const {
@@ -43,36 +43,40 @@ const TodosList = () => {
 
   return (
     <div className="todos-wrapper">
-      { todos.length > 0 ?  todos.map((todo) => (
-        <div className="list-item" key={todo.id}>
-          <div>
-            <li>
-              <input
-                type="text"
-                value={todo.name}
-                className={`list ${todo.isDone ? "complete" : ""} `}
-                onChange={(event) => event.preventDefault()}
+      {todos.length > 0 ? (
+        todos.map((todo) => (
+          <div className="list-item" key={todo.id}>
+            <div>
+              <li>
+                <input
+                  type="text"
+                  value={todo.name}
+                  className={`list ${todo.isDone ? "complete" : ""} `}
+                  onChange={(event) => event.preventDefault()}
+                />
+              </li>
+            </div>
+            <div className="button-container">
+              <Checkbox
+                checked={todo.isDone}
+                value={todo.isDone}
+                onChange={() => completeHandler(todo)}
+                inputProps={{ "aria-label": "primary checkbox" }}
+                color="primary"
               />
-            </li>
-          </div>
-          <div className="button-container">
-            <Checkbox
-              checked={todo.isDone}
-              value={todo.isDone}
-              onChange={() => completeHandler(todo)}
-              inputProps={{ "aria-label": "primary checkbox" }}
-              color="primary"
-            />
 
-            <button
-              className="button-delete "
-              onClick={() => deletHandler(todo)}
-            >
-              <AiFillDelete />
-            </button>
+              <button
+                className="button-delete "
+                onClick={() => deletHandler(todo)}
+              >
+                <AiFillDelete />
+              </button>
+            </div>
           </div>
-        </div>
-      )) :<h1 className="alternative">Add todos</h1>}
+        ))
+      ) : (
+        <h1 className="alternative">Add todos</h1>
+      )}
     </div>
   );
 };
